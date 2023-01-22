@@ -13,6 +13,9 @@
 #include "app_main.h"
 #include "eeprom.h"
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/semphr.h"
 
 static xSemaphoreHandle muxnvs= NULL;
 const char hardware[] = {"hardware"};
