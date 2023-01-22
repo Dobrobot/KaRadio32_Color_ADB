@@ -34,7 +34,7 @@
 //------------------- 
 // Set the right one with command sys.led
 // GPIO can be changed with command sys.ledgpio("x")
-#define GPIO_LED	GPIO_NONE		// Flashing led or Playing led
+#define GPIO_LED	GPIO_NUM_12		// Flashing led or Playing led (color ADB)
 
 // gpio of the vs1053
 //-------------------
@@ -77,9 +77,9 @@
 
 // SPI lcd
 //---------
-#define PIN_LCD_CS	GPIO_NUM_13		//CS
-#define PIN_LCD_A0	GPIO_NUM_14		//A0 or D/C
-#define PIN_LCD_RST	GPIO_NUM_2		//Reset RES RST or not used
+#define PIN_LCD_CS	GPIO_NUM_5		//CS (color ADB)
+#define PIN_LCD_A0	GPIO_NUM_16		//A0 or D/C (color ADB)
+#define PIN_LCD_RST	GPIO_NUM_17		//Reset RES RST or not used (color ADB)
 // KSPI pins +
 
 // IR Signal

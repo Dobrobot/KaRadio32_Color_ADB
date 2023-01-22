@@ -1,4 +1,7 @@
 ## STATE
+
+Patch for http://esp32.net/images/Microwavemont/ESP32-Color-ADB/Microwavemont_ESP32-Color-ADB_Info.txt
+
 Release 2.3 R0 Stable  
 Verson adapted to ESP_IDF 4.4 Work in progress.  
   

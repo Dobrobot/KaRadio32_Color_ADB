@@ -1057,7 +1057,8 @@ void playingUcg()
 
 void lcd_initUcg(uint8_t *lcd_type)
 {
-	
+	ESP_LOGI(TAG,"*** lcd_initUcg Type: %p", lcd_type);
+
 	gpio_num_t miso;
 	gpio_num_t mosi;
 	gpio_num_t sclk;	
@@ -1082,6 +1083,12 @@ void lcd_initUcg(uint8_t *lcd_type)
 	{
 		gpio_get_spi_bus(&spi_no,&miso,&mosi,&sclk);
 		gpio_get_spi_lcd(&cs ,&a0,&rstlcd);
+		ESP_LOGI(TAG,"*** lcd_initUcg: %i, %i, %i, %i", spi_no,miso,mosi,sclk);
+		ESP_LOGI(TAG,"*** lcd_initUcg: %i, %i, %i", cs,a0,rstlcd); // 13, 14, 2
+		cs = 5;
+		a0 = 16;
+		rstlcd = 17;
+		ESP_LOGI(TAG,"*** lcd_initUcg COLOR ADB: %i, %i, %i", cs,a0,rstlcd); // 13, 14, 2
 		ucg_esp32_hal.spi_no   = spi_no;
 		ucg_esp32_hal.clk   = sclk;
 		ucg_esp32_hal.mosi  = mosi;
@@ -1152,8 +1159,8 @@ void lcd_initUcg(uint8_t *lcd_type)
 			
 		if (rotat)
 			ucg_SetRotate270(&ucg);
-		else 
-			ucg_SetRotate90(&ucg);	
+//		else 
+//			ucg_SetRotate90(&ucg);	
 
 	
 		ucg_SetFontPosTop(&ucg);

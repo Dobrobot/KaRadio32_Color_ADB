@@ -219,6 +219,7 @@ void sleepLcd()
 void lcd_init(uint8_t Type)
 {	
 	lcd_type = Type;
+	ESP_LOGI(TAG,"*** lcd_init Type: %d, %x", lcd_type, lcd_type);
 
 	if (lcd_type == LCD_NONE) return;
 	
@@ -238,12 +239,13 @@ void lcd_init(uint8_t Type)
 void in_welcome(const char* ip,const char*state,int y,char* Version)
 {
 	if (lcd_type == LCD_NONE) return;
+	DrawColor(1,0,255,0);
 	DrawString(2,2*y,Version);
-	DrawColor(0,0,0,0);
-	DrawBox(2, 4*y, GetWidth()-2, y);
+	DrawColor(1,255,0,0);
+	DrawBox(0, 3*y-1, GetWidth(), y-1);
 	DrawColor(1,255,255,255);
-	DrawString(2,4*y,state);
-	DrawString( DrawString(2,5*y,"IP:")+18,5*y,ip);	
+	DrawString(2,3*y,state);
+	DrawString( DrawString(0,4*y,"IP:")+5,4*y,ip);	
 }		
 
 void lcd_welcome(const char* ip,const char*state)
@@ -256,6 +258,7 @@ char Version[20];
 	{
 		setfont(2);
 		int y = - ucg_GetFontDescent(&ucg)+ ucg_GetFontAscent(&ucg) +3; //interline
+		DrawColor(1,0,0,255);
 		DrawString(GetWidth()/4,2,"KaRadio32");	
 		setfont(1);
 		in_welcome(ip,state,y,Version);
@@ -324,7 +327,7 @@ void scroll()
 // Change the current screen
 ////////////////////////////
 void Screen(typeScreen st){
-//printf("Screen: st: %d, stateScreen: %d, mTscreen: %d, default: %d\n",st,stateScreen,mTscreen,defaultStateScreen);
+printf("Screen: st: %d, stateScreen: %d, mTscreen: %d, default: %d\n",st,stateScreen,mTscreen,defaultStateScreen);
   if (stateScreen != st)
   {
 	mTscreen = MTNEW;
@@ -406,7 +409,7 @@ void drawStation()
   } while (playable == false); 
 	
   //drawTTitle(ststr); 
-//printf ("drawStation: %s\n",sNum  );
+printf ("drawStation: %s\n",sNum  );
   if (lcd_type != LCD_NONE) 
 	isColor?drawStationUcg(mTscreen,sNum,ddot):drawStationU8g2(mTscreen,sNum,ddot);
   free (si);
@@ -434,12 +437,12 @@ void drawTime()
 void drawScreen()
 {
 //  if (lcd_type == LCD_NONE) return;
-//  ESP_LOGD(TAG,"stateScreen: %d,defaultStateScreen: %d, mTscreen: %d, itLcdOut: %d",stateScreen,defaultStateScreen,mTscreen,itLcdOut);
+  ESP_LOGD(TAG,"stateScreen: %d,defaultStateScreen: %d, mTscreen: %d, itLcdOut: %d",stateScreen,defaultStateScreen,mTscreen,itLcdOut);
   if ((mTscreen != MTNODISPLAY)&&(!itLcdOut))
   {
 	switch (stateScreen)
 	{
-    case smain:  // 
+    case smain:  // 0
      drawFrame();
       break;
     case svolume:
